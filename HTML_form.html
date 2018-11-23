@@ -51,6 +51,13 @@
           margin-top: 7px;
           float: left;
         }
+        #station > p{
+          text-align: center;
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 23px;
+          color: orange;
+
+        }
         #time_st_name{
           text-align: center;
           /* border: solid; */
@@ -71,15 +78,31 @@
         #num_bus_div{
           /* display: inline-block; */
           margin-top: 17px;
-          margin-right: 850px;
+          margin-right: 50px; /* 850px; */
           font-family: 'Times New Roman', Times, serif;
           font-size: 20px;
           color: white;
           float: right;
         }
+        #num_bus_div > i{
+            margin-left: 605px;
+            font-style: normal;
+            font-size: 24px;
+            color: orange;
+        }
         #refresh{
           margin-top: 30px;
           margin-left: 75px;
+        }
+        #tab{
+          border: 1px;
+          margin-top: 5px;
+          width: 450px;
+          height: 250px;
+          border-collapse: collapse;
+          border-color: #cccccc;
+          text-align: center;
+          color: #4d4d4d; /* 808080 */
         }
     </style>
 </head>
@@ -91,29 +114,28 @@
       style="display: inline-block; margin-top: 12px; margin-left: 30px; ">outbound</button>
       <button class="button button-rounded button-highlight" onclick="get_times('inbound')"
       style="display: inline-block; margin-top: 12px; margin-left: 5px; ">inbound</button>
-      <div id="num_bus_div">24 bus route</div>
-      <!-- <a href="#" class="button button-rounded button-highlight">press me</a> -->
-    <!-- </div> -->
-    <!-- <table id="tab" style="border: solid; display: none;">
-      <tr>
-        <td>1-50</td><td>51-100</td><td>101-150</td><td>151-200</td>
-      </tr>
-      <tr>
-        <td>201-250</td><td>251-300</td><td>301-350</td><td>351-400</td>
-      </tr>
-      <tr>
-        <td>401-450</td><td>451-500</td><td>501-550</td><td>601-650</td>
-      </tr>
-      <tr>
-        <td>651-700</td><td>951-1000</td><td></td><td></td>
-      </tr>
-      <tr>
-        <td>A-D</td><td>E-K</td><td>N-S</td><td>U-X</td>
-      </tr>
-    </table> -->
+      <div id="num_bus_div">24 bus route<i>transport for London</i></div>
   </div>
-    <div id="times"></div>
-    <div id="station" style="display: inline-block;"></div>
+    <div id="times">
+      <table id="tab" border="1">
+        <tr>
+          <td>1-50</td><td>51-100</td><td>101-150</td><td>151-200</td>
+        </tr>
+        <tr>
+          <td>201-250</td><td>251-300</td><td>301-350</td><td>351-400</td>
+        </tr>
+        <tr>
+          <td>401-450</td><td>451-500</td><td>501-550</td><td>601-650</td>
+        </tr>
+        <tr>
+          <td>651-700</td><td>951-1000</td><td></td><td></td>
+        </tr>
+        <tr>
+          <td>A-D</td><td>E-K</td><td>N-S</td><td>U-X</td>
+        </tr>
+      </table>
+    </div>
+    <div id="station" style="display: inline-block;"><p>Which bus are you looking for?</p></div>
     <div id="map" style="display: inline-block;"></div>
 
     <script type="text/javascript">
