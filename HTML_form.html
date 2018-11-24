@@ -98,11 +98,17 @@
           border: 1px;
           margin-top: 5px;
           width: 450px;
-          height: 250px;
+          height: auto; /*250px;*/
           border-collapse: collapse;
           border-color: #cccccc;
           text-align: center;
           color: #4d4d4d; /* 808080 */
+        }
+        #tr{
+          height: 50px;
+        }
+        .tr{
+          height: 50px;
         }
     </style>
 </head>
@@ -118,19 +124,34 @@
   </div>
     <div id="times">
       <table id="tab" border="1">
-        <tr>
-          <td>1-50</td><td>51-100</td><td>101-150</td><td>151-200</td>
+        <tr id="tr">
+          <td onclick="openbox('box1'); return false">1-50</td>
+          <td onclick="openbox('box2'); return false">51-100</td>
+          <td onclick="openbox('box3'); return false">101-150</td>
+          <td onclick="openbox('box4'); return false">151-200</td>
         </tr>
-        <tr>
+          <tr class="tr" id="box1" style="display: none;">
+            <td>1</td>
+          </tr>
+          <tr class="tr" id="box2" style="display: none;">
+            <td>2</td>
+          </tr>
+          <tr class="tr" id="box3" style="display: none;">
+            <td>3</td>
+          </tr>
+          <tr class="tr" id="box4" style="display: none;">
+            <td>4</td>
+          </tr>
+        <tr id="tr">
           <td>201-250</td><td>251-300</td><td>301-350</td><td>351-400</td>
         </tr>
-        <tr>
+        <tr id="tr">
           <td>401-450</td><td>451-500</td><td>501-550</td><td>601-650</td>
         </tr>
-        <tr>
-          <td>651-700</td><td>951-1000</td><td></td><td></td>
+        <tr id="tr">
+          <td>651-700</td><td>951-1000</td>
         </tr>
-        <tr>
+        <tr id="tr">
           <td>A-D</td><td>E-K</td><td>N-S</td><td>U-X</td>
         </tr>
       </table>
@@ -139,16 +160,22 @@
     <div id="map" style="display: inline-block;"></div>
 
     <script type="text/javascript">
-
-    // $(document).ready(function(){
-    //   $('#open').click(function(){
-    //     $('#times').css('display','table');
-    //   });
-    // });
+      function openbox(id){
+        display = document.getElementById(id).style.display;
+        // var id_old
+        // if(id_old == true){
+        // }
+        //    document.getElementById(id_old).style.display='none';
+        //    id_old = id;
+        // }
+        if(display=='none'){
+           document.getElementById(id).style.display='block';
+        }else{
+           document.getElementById(id).style.display='none';
+        }
+      }
 
         var a = [];
-        //a.length=0;
-        //a.splice(0,arr.length);
         var lat = [];
         var lon = [];
         function get_times(way) {
