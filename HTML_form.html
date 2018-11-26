@@ -106,15 +106,29 @@
         }
         #tr{
           height: 50px;
+          cursor: pointer;
+        }
+        #tr > td:hover{
+          background-color: #ffdca3;
         }
         .tr{
-          height: 50px;
+          height: 150px;
+        }
+        .tr > td > a{
+          padding-right: 10px;
+          padding-left: 10px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          cursor: pointer;
+        }
+        .tr > td > a:hover{
+          color: orange;
         }
     </style>
 </head>
 <body>
   <div id="buses_line">
-    <input class="button button-rounded" type="button" value="Buses" style="display: inline-block; margin-top: 12px; margin-left: 30px; "/>
+    <input class="button button-rounded" type="button" value="Buses" onclick="sh_bus_num()" style="display: inline-block; margin-top: 12px; margin-left: 30px; "/>
     <!-- <div id="out_in" style="border: solid; width: 1320px; height: 28px; padding-top: 7px; padding-left: 10px; margin-top: 3px;"> -->
       <button class="button button-rounded button-highlight" onclick="get_times('outbound')"
       style="display: inline-block; margin-top: 12px; margin-left: 30px; ">outbound</button>
@@ -131,16 +145,22 @@
           <td onclick="openbox('box4'); return false">151-200</td>
         </tr>
           <tr class="tr" id="box1" style="display: none;">
-            <td>1</td>
+              <td colspan="4">
+                <br /><a>1 </a><a> 2 </a><a> 3 </a><a> 4 </a><a> 5 </a><a> 6 </a><a> 7 </a><a> 8 </a><a> 9 </a><a> 11</a><br /><br />
+                <a>12 </a><a> 13 </a><a> 14 </a><a> 15 </a><a> 16 </a><a> 17</a><a> 18 </a><a> 19 </a><a> 20 </a><a> 21</a><br /><br />
+                <a>22 </a><a> 23 </a><a> 24 </a><a> 25 </a><a> 26 </a><a> 27</a><a> 28 </a><a> 29 </a><a> 30 </a><a> 31</a><br /><br />
+                <a>32 </a><a> 33 </a><a> 34 </a><a> 35 </a><a> 36 </a><a> 37</a><a> 38 </a><a> 39 </a><a> 40 </a><a> 41</a><br /><br />
+                <a>42 </a><a> 43 </a><a> 44 </a><a> 45 </a><a> 46 </a><a> 47</a><a> 48 </a><a> 49 </a><a> 50</a><br /><br />
+              </td>
           </tr>
           <tr class="tr" id="box2" style="display: none;">
-            <td>2</td>
+            <td colspan="4">2</td>
           </tr>
           <tr class="tr" id="box3" style="display: none;">
-            <td>3</td>
+            <td colspan="4">3</td>
           </tr>
           <tr class="tr" id="box4" style="display: none;">
-            <td>4</td>
+            <td colspan="4">4</td>
           </tr>
         <tr id="tr">
           <td>201-250</td><td>251-300</td><td>301-350</td><td>351-400</td>
@@ -160,19 +180,23 @@
     <div id="map" style="display: inline-block;"></div>
 
     <script type="text/javascript">
+      var id_old;
       function openbox(id){
         display = document.getElementById(id).style.display;
-        // var id_old
-        // if(id_old == true){
-        // }
-        //    document.getElementById(id_old).style.display='none';
-        //    id_old = id;
-        // }
+        if(id_old != null){
+           document.getElementById(id_old).style.display='none';
+        }
+        id_old = id;
         if(display=='none'){
-           document.getElementById(id).style.display='block';
+           document.getElementById(id).style.display='table-row';
         }else{
            document.getElementById(id).style.display='none';
         }
+      }
+
+      function sh_bus_num(){
+        // var elem = document.getElementById('tab').innerHTML;
+        $("#times").html("");
       }
 
         var a = [];
