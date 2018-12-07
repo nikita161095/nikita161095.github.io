@@ -1,0 +1,113 @@
+body{
+  background-color: #f5f5f5;
+  overflow-x: hidden;
+}
+#map{
+  width: 639px;
+  height: 580px;
+  margin-top: 7px;
+  margin-left: 5px;
+}
+#name_station{
+  /* border: solid; */
+  display: inline-block;
+  width: 365px;
+  height: 20px;
+  margin: 2px;
+  /* text-align: center; */
+  cursor: pointer;
+  font-size: 21px;
+}
+#name_station:hover{
+  color: #ffa70f;
+}
+#times{
+  /* border: solid; */
+  /* display: inline-block; */
+  float: left;
+  height: 580px;
+  width: 456px;
+  margin-top: 3px;
+  overflow-y: auto;
+}
+#times::-webkit-scrollbar { width: 0; }
+body::-webkit-scrollbar { width: 0; }
+#station{
+  width: 245px;
+  height: 580px;
+  margin-left: 5px;
+  margin-top: 7px;
+  float: left;
+}
+#station > p{
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 23px;
+  color: orange;
+
+}
+#time_st_name{
+  text-align: center;
+  /* border: solid; */
+  margin-bottom: -10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  color: orange;
+}
+#buses_line{
+   /* border: solid; */
+   background-color: #2d3039;
+   width: auto;
+   height: 56px;
+   margin-top: -10px;
+   margin-left: -10px;
+   margin-right: -10px;
+}
+#num_bus_div{
+  margin-top: 17px;
+  margin-right: 50px; /* 850px; */
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  color: white;
+  float: right;
+}
+#num_bus_div > i{
+    margin-left: 605px;
+    font-style: normal;
+    font-size: 24px;
+    color: orange;
+}
+#refresh{
+  margin-top: 30px;
+  margin-left: 75px;
+}
+#tab{
+  border: 1px;
+  margin-top: 5px;
+  width: 450px;
+  height: auto; /*250px;*/
+  border-collapse: collapse;
+  border-color: #cccccc;
+  text-align: center;
+  color: #4d4d4d; /* 808080 */
+}
+#tr{
+  height: 50px;
+  cursor: pointer;
+}
+#tr > td:hover{
+  background-color: #ffdca3;
+}
+.tr{
+  height: 150px;
+}
+.tr > td > a{
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+.tr > td > a:hover{
+  color: orange;
+}

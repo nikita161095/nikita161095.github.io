@@ -4,139 +4,21 @@
 <head>
     <meta charset="utf-8" />
     <title>JavaScript</title>
-    <!-- <script type="text/javascript" href="buttons\js\buttons.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="style.css" >
     <link rel="stylesheet" type="text/css" href="buttons.css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?lang=en_US" type="text/javascript"></script>
-    <style>
-        body{
-        	background-color: #f5f5f5;
-          overflow-x: hidden;
-        }
-        #map{
-          width: 639px;
-          height: 580px;
-          margin-top: 7px;
-          margin-left: 5px;
-        }
-        #name_station{
-          /* border: solid; */
-          display: inline-block;
-          width: 365px;
-          height: 20px;
-          margin: 2px;
-          /* text-align: center; */
-          cursor: pointer;
-          font-size: 21px;
-        }
-        #name_station:hover{
-          color: #ffa70f;
-        }
-        #times{
-          /* border: solid; */
-          /* display: inline-block; */
-          float: left;
-          height: 580px;
-          width: 456px;
-          margin-top: 3px;
-          overflow-y: auto;
-
-        }
-        #times::-webkit-scrollbar { width: 0; }
-        body::-webkit-scrollbar { width: 0; }
-        #station{
-          width: 245px;
-          height: 580px;
-          margin-left: 5px;
-          margin-top: 7px;
-          float: left;
-        }
-        #station > p{
-          text-align: center;
-          font-family: 'Times New Roman', Times, serif;
-          font-size: 23px;
-          color: orange;
-
-        }
-        #time_st_name{
-          text-align: center;
-          /* border: solid; */
-          margin-bottom: -10px;
-          font-family: 'Times New Roman', Times, serif;
-          font-size: 20px;
-          color: orange;
-        }
-        #buses_line{
-           /* border: solid; */
-           background-color: #2d3039;
-           width: auto;
-           height: 56px;
-           margin-top: -10px;
-           margin-left: -10px;
-           margin-right: -10px;
-        }
-        #num_bus_div{
-          /* display: inline-block; */
-          margin-top: 17px;
-          margin-right: 50px; /* 850px; */
-          font-family: 'Times New Roman', Times, serif;
-          font-size: 20px;
-          color: white;
-          float: right;
-        }
-        #num_bus_div > i{
-            margin-left: 605px;
-            font-style: normal;
-            font-size: 24px;
-            color: orange;
-        }
-        #refresh{
-          margin-top: 30px;
-          margin-left: 75px;
-        }
-        #tab{
-          border: 1px;
-          margin-top: 5px;
-          width: 450px;
-          height: auto; /*250px;*/
-          border-collapse: collapse;
-          border-color: #cccccc;
-          text-align: center;
-          color: #4d4d4d; /* 808080 */
-        }
-        #tr{
-          height: 50px;
-          cursor: pointer;
-        }
-        #tr > td:hover{
-          background-color: #ffdca3;
-        }
-        .tr{
-          height: 150px;
-        }
-        .tr > td > a{
-          padding-right: 10px;
-          padding-left: 10px;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          cursor: pointer;
-        }
-        .tr > td > a:hover{
-          color: orange;
-        }
-    </style>
 </head>
 <body>
   <div id="buses_line">
     <input class="button button-rounded" type="button" value="Buses" onclick="sh_bus_num()" style="display: inline-block; margin-top: 12px; margin-left: 30px; "/>
-    <!-- <div id="out_in" style="border: solid; width: 1320px; height: 28px; padding-top: 7px; padding-left: 10px; margin-top: 3px;"> -->
       <button class="button button-rounded button-highlight" onclick="get_times('outbound')"
       style="display: inline-block; margin-top: 12px; margin-left: 30px; ">outbound</button>
       <button class="button button-rounded button-highlight" onclick="get_times('inbound')"
       style="display: inline-block; margin-top: 12px; margin-left: 5px; ">inbound</button>
-      <div id="num_bus_div">24 bus route<i>transport for London</i></div>
+      <div id="num_bus_div"><span></span><i>transport for London</i></div>
   </div>
-    <div id="times">
+    <div id="tab_times" style="position: fixed;">
       <table id="tab" border="1">
         <tr id="tr">
           <td onclick="openbox('box1'); return false">1-50</td>
@@ -146,11 +28,22 @@
         </tr>
           <tr class="tr" id="box1" style="display: none;">
               <td colspan="4">
-                <br /><a>1 </a><a> 2 </a><a> 3 </a><a> 4 </a><a> 5 </a><a> 6 </a><a> 7 </a><a> 8 </a><a> 9 </a><a> 11</a><br /><br />
-                <a>12 </a><a> 13 </a><a> 14 </a><a> 15 </a><a> 16 </a><a> 17</a><a> 18 </a><a> 19 </a><a> 20 </a><a> 21</a><br /><br />
-                <a>22 </a><a> 23 </a><a> 24 </a><a> 25 </a><a> 26 </a><a> 27</a><a> 28 </a><a> 29 </a><a> 30 </a><a> 31</a><br /><br />
-                <a>32 </a><a> 33 </a><a> 34 </a><a> 35 </a><a> 36 </a><a> 37</a><a> 38 </a><a> 39 </a><a> 40 </a><a> 41</a><br /><br />
-                <a>42 </a><a> 43 </a><a> 44 </a><a> 45 </a><a> 46 </a><a> 47</a><a> 48 </a><a> 49 </a><a> 50</a><br /><br />
+                <br /><a onclick="get_number(1)">1 </a><a onclick="get_number(2)"> 2 </a><a onclick="get_number(3)"> 3 </a>
+                <a onclick="get_number(4)"> 4 </a><a onclick="get_number(5)"> 5 </a><a onclick="get_number(6)"> 6 </a>
+                <a onclick="get_number(7)"> 7 </a><a onclick="get_number(8)"> 8 </a><a onclick="get_number(9)"> 9 </a>
+                <a onclick="get_number(11)"> 11</a><br /><br />
+                <a onclick="get_number(12)">12 </a><a onclick="get_number(13)"> 13 </a><a onclick="get_number(14)"> 14 </a><a onclick="get_number(15)"> 15 </a>
+                <a onclick="get_number(16)"> 16 </a><a onclick="get_number(17)"> 17</a><a onclick="get_number(18)"> 18 </a><a onclick="get_number(19)"> 19 </a>
+                <a onclick="get_number(20)"> 20 </a><a onclick="get_number(21)"> 21</a><br /><br />
+                <a>22 </a><a> 23 </a><a> 24 </a><a> 25 </a>
+                <a> 26 </a><a> 27</a><a> 28 </a><a> 29 </a>
+                <a> 30 </a><a> 31</a><br /><br />
+                <a>32 </a><a> 33 </a><a> 34 </a><a> 35 </a>
+                <a> 36 </a><a> 37</a><a> 38 </a><a> 39 </a>
+                <a> 40 </a><a> 41</a><br /><br />
+                <a>42 </a><a> 43 </a><a> 44 </a><a> 45 </a>
+                <a> 46 </a><a> 47</a><a> 48 </a><a> 49 </a>
+                <a> 50</a><br /><br />
               </td>
           </tr>
           <tr class="tr" id="box2" style="display: none;">
@@ -176,6 +69,8 @@
         </tr>
       </table>
     </div>
+    <div id="times">
+    </div>
     <div id="station" style="display: inline-block;"><p>Which bus are you looking for?</p></div>
     <div id="map" style="display: inline-block;"></div>
 
@@ -195,22 +90,32 @@
       }
 
       function sh_bus_num(){
-        // var elem = document.getElementById('tab').innerHTML;
         $("#times").html("");
+        document.getElementById('tab').style.display='table';
       }
 
         var a = [];
         var lat = [];
         var lon = [];
+        var bus_number;
+
+        function get_number(n){
+          $("span").text(n + " bus route");
+          document.getElementById('tab').style.display='none';
+          bus_number = n;
+          get_times('outbound');
+        }
+
         function get_times(way) {
           myMap.geoObjects.removeAll();
+          var route = bus_number + '/route/sequence/' + way;
             $.ajax({
                 type: 'GET',
-                url: 'https://api.tfl.gov.uk/line/24/route/sequence/' + way,
+                url: 'https://api.tfl.gov.uk/line/' + route,
                 dataType: 'json',
                 success: function (data) {
                     $("#times").html("");
-                    var output = "<div>";
+                    var output = "<div id=stoppoint>";
                     for (var i in data.stopPointSequences) {
                         for (var k in data.stopPointSequences[i].stopPoint) {
                             a[k] = data.stopPointSequences[i].stopPoint[k].id;
@@ -227,10 +132,6 @@
         }
 
         function get_stop(num){
-          // alert(a[num]);
-          // alert(lat[num]);
-          // alert(lon[num]);
-          // pm(num);
           var num_id = a[num] + '/arrivals';
               $.ajax({
                   type: 'GET',
@@ -280,36 +181,13 @@
           var myMap
           ymaps.ready(init);
           function init(num){
-            // lat[num] = lat_;
-            // lon[num] = lon_;
-              // Создание карты.
               myMap = new ymaps.Map("map", {
-                  // Координаты центра карты.
-                  // Порядок по умолчнию: «широта, долгота».
-                  // Чтобы не определять координаты центра карты вручную,
-                  // воспользуйтесь инструментом Определение координат.
                     center: [51.5074, 0.0278],
-                  // center: [lat[num], lon[num]], //51.5074, 0.1278
-                  // Уровень масштабирования. Допустимые значения:
-                  // от 0 (весь мир) до 19.
                   zoom: 9
               });
-
-              // var myPlacemark = new ymaps.Placemark([51.5074, 0.0178], {           //51.5074, 0.0178
-              //     // Хинт показывается при наведении мышкой на иконку метки.
-              //     hintContent: 'Содержимое всплывающей подсказки',
-              //     // Балун откроется при клике по метке.
-              //     balloonContent: 'Содержимое балуна'
-              // });
-              // // После того как метка была создана, ее
-              // // можно добавить на карту.
-              // myMap.geoObjects.add(myPlacemark);
           }
-          //var myCollection = new ymaps.GeoObjectCollection();
 
           function pm(num, s){
-            // lat_ = lat[num];
-            // lon_ = lon[num];
             myMap.geoObjects.removeAll();
             var myPlacemark = new ymaps.Placemark([lat[num], lon[num]], {
                 hintContent: s,
